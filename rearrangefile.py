@@ -188,7 +188,7 @@ datafinal['processed_tweet'] = datafinal['cleaned_tweet'].apply(clean_text)
 
 
 X=datafinal['processed_tweet']
-idf=cv.idf_
+
 cv = TfidfVectorizer(
     stop_words='english',
     sublinear_tf=True,
@@ -197,13 +197,13 @@ cv = TfidfVectorizer(
     
     ngram_range=(1,2),
     max_features=30000)
-
+# idf=cv.idf
 # fit and transform on it the training features
 X=cv.fit_transform(datafinal['processed_tweet'])
 pickle.dump(cv, open('transform.pkl','wb'))
 
-dic=dict(zip(cv.get_feature_names(),idf))
-print(dic)
+# dic=dict(zip(cv.get_feature_names(),idf))
+# print(dic)
 
 X.shape
 Y=datafinal.label
